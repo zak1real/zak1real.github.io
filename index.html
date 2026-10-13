@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="logo" href="index.html" data-owner-name></a>
+            <nav class="nav">
+                <a href="#projects">Проекты</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="wrap intro">
+            <p class="eyebrow" data-owner-role></p>
+            <h1 data-owner-name></h1>
+            <p data-owner-about></p>
+        </section>
+
+        <section class="wrap section" id="projects">
+            <div class="section-head">
+                <h2>Проекты</h2>
+            </div>
+            <div class="grid" data-project-grid></div>
+        </section>
+
+        <section class="wrap section" id="contacts">
+            <div class="section-head">
+                <h2>Контакты</h2>
+            </div>
+            <ul class="contacts" data-contacts></ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <span>© 2026</span>
+            <button class="link-btn" type="button" data-contact-open>Связаться</button>
+        </div>
+    </footer>
+
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
