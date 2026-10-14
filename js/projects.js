@@ -3,9 +3,11 @@ window.OWNER = {
     name: "Захар Белолугов",
     role: "Веб-разработчик",
     about: "Делаю сайты на HTML, CSS и JavaScript: от лендингов до портфолио для художников и студий.",
-    // Куда отправляется форма «Связаться». FormSubmit пересылает письма на указанный email.
-    // Пустая строка — форма просто откроет почтовый клиент (mailto).
-    formEndpoint: "https://formsubmit.co/ajax/belolugovz@gmail.com",
+    // Форма «Связаться» отправляется через Web3Forms: письма приходят на почту, к которой привязан ключ.
+    // Ключ берётся на https://web3forms.com (его можно хранить в открытом виде).
+    // Пустой ключ — форма просто откроет почтовый клиент (mailto).
+    formEndpoint: "https://api.web3forms.com/submit",
+    formAccessKey: "d9b3a632-1550-4d73-8122-90b2125dd14a",
     email: "belolugovz@gmail.com",
     contacts: [
         { label: "Email", href: "mailto:belolugovz@gmail.com", text: "belolugovz@gmail.com" },

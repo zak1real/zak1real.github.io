@@ -176,7 +176,7 @@
                 return;
             }
 
-            if (!owner.formEndpoint) {
+            if (!owner.formEndpoint || !owner.formAccessKey) {
                 mailtoFallback(data);
                 return;
             }
@@ -184,17 +184,21 @@
             submit.disabled = true;
             setStatus("Отправляю…");
 
+            // FormData без Content-Type — «простой» запрос без CORS preflight:
+            // Web3Forms отклоняет OPTIONS-запрос, который браузер шлёт перед JSON.
+            var payload = new FormData();
+            payload.append("access_key", owner.formAccessKey);
+            payload.append("subject", "Сообщение с сайта-портфолио");
+            payload.append("from_name", data.name);
+            payload.append("name", data.name);
+            payload.append("contact_type", data.contactType);
+            payload.append("contact", data.contact);
+            payload.append("message", data.message);
+
             fetch(owner.formEndpoint, {
                 method: "POST",
-                headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                body: JSON.stringify({
-                    name: data.name,
-                    contact_type: data.contactType,
-                    contact: data.contact,
-                    message: data.message,
-                    _subject: "Сообщение с сайта-портфолио",
-                    _template: "table"
-                })
+                headers: { "Accept": "application/json" },
+                body: payload
             })
                 .then(function (res) {
                     if (!res.ok) throw new Error("HTTP " + res.status);
