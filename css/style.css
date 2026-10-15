@@ -183,6 +183,30 @@ a {
     transform: scale(1.03);
 }
 
+/* Мини-телефон на обложке карточки */
+.card-phone {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 19%;
+    padding: 3px;
+    border-radius: 12px;
+    background: #0b0b0b;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease;
+}
+
+/* Перебивает .card:hover .card-media img — телефон не масштабируется вместе с обложкой */
+.card .card-media .card-phone img {
+    height: auto;
+    border-radius: 9px;
+    transform: none;
+}
+
+.card:hover .card-phone {
+    transform: translateY(-4px);
+}
+
 .card-body {
     padding: 20px 22px 24px;
     display: grid;
@@ -387,8 +411,31 @@ a {
 
 .shot img {
     width: 100%;
+}
+
+.screen-desktop img {
     border: 1px solid var(--line);
     border-radius: var(--radius);
+}
+
+/* Десктоп и телефон рядом: высоты экранов примерно совпадают */
+.has-mobile .shot-screens {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.27fr);
+    gap: 32px;
+    align-items: center;
+}
+
+/* Рамка телефона */
+.screen-mobile {
+    padding: 6px;
+    border-radius: 30px;
+    background: #0b0b0b;
+    box-shadow: 0 0 0 1px var(--line), 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.screen-mobile img {
+    border-radius: 24px;
 }
 
 .shot figcaption {
@@ -638,6 +685,17 @@ a {
     .project-layout {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    /* На телефоне экраны друг под другом, телефон — по центру */
+    .has-mobile .shot-screens {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .screen-mobile {
+        width: min(240px, 66%);
+        justify-self: center;
     }
 
     .nav {

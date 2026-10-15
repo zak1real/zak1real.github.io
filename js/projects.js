@@ -18,6 +18,7 @@ window.OWNER = {
 
 // Проекты. Порядок в массиве = порядок на сайте.
 // status: "done" — готовый проект-пример, "wip" — ещё в разработке.
+// gallery: src — скриншот десктопа, mobile — скриншот телефона (необязательно, показывается рядом в рамке телефона).
 window.PROJECTS = [
     {
         slug: "5treet-justies",
@@ -25,11 +26,11 @@ window.PROJECTS = [
         subtitle: "Сайт-портфолио художника",
         year: "2026",
         status: "wip",
-        cover: "assets/5treet-index.png",
+        cover: "assets/5treet-index.jpg",
         gallery: [
-            { src: "assets/5treet-index.png", caption: "Главная: полноэкранное видео-обложка" },
-            { src: "assets/5treet-series.png", caption: "Страница серии работ" },
-            { src: "assets/5treet-about.png", caption: "Биография художника" }
+            { src: "assets/5treet-index.jpg", mobile: "assets/5treet-index-m.jpg", caption: "Главная: полноэкранное видео-обложка" },
+            { src: "assets/5treet-series.jpg", mobile: "assets/5treet-series-m.jpg", caption: "Страница серии работ" },
+            { src: "assets/5treet-about.jpg", mobile: "assets/5treet-about-m.jpg", caption: "Биография художника" }
         ],
         description: [
             "Минималистичный монохромный сайт для художника Никиты Шварнукова (команда Lovemarket): видео-обложка на главной, разделы с сериями работ, выставками, биографией и контактами.",
@@ -48,11 +49,11 @@ window.PROJECTS = [
         subtitle: "Интернет-магазин скейтшопа",
         year: "2026",
         status: "done",
-        cover: "assets/skateshop-index.png",
+        cover: "assets/skateshop-index.jpg",
         gallery: [
-            { src: "assets/skateshop-index.png", caption: "Главная: баннеры и лента новинок" },
-            { src: "assets/skateshop-catalog.png", caption: "Каталог с фильтрами по брендам, размерам и цене" },
-            { src: "assets/skateshop-product.png", caption: "Карточка товара с выбором размера" }
+            { src: "assets/skateshop-index.jpg", mobile: "assets/skateshop-index-m.jpg", caption: "Главная: баннеры и лента новинок" },
+            { src: "assets/skateshop-catalog.jpg", mobile: "assets/skateshop-catalog-m.jpg", caption: "Каталог с фильтрами по брендам, размерам и цене" },
+            { src: "assets/skateshop-product.jpg", mobile: "assets/skateshop-product-m.jpg", caption: "Карточка товара с выбором размера" }
         ],
         description: [
             "Учебный интернет-магазин скейтшопа: главная с баннерами и подборками, каталог, карточки товаров, корзина и страница о магазине.",
@@ -73,10 +74,10 @@ window.PROJECTS = [
         status: "wip",
         cover: "assets/roliki-index.jpg",
         gallery: [
-            { src: "assets/roliki-index.jpg", caption: "Главная: первый экран с видео тренировки" },
-            { src: "assets/roliki-place.jpg", caption: "Место занятий, расписание и тренеры" },
-            { src: "assets/roliki-media.jpg", caption: "Фото с выездов и соревнований" },
-            { src: "assets/roliki-contact.jpg", caption: "Страница записи: форма и телефоны тренеров" }
+            { src: "assets/roliki-index.jpg", mobile: "assets/roliki-index-m.jpg", caption: "Главная: первый экран с видео тренировки" },
+            { src: "assets/roliki-place.jpg", mobile: "assets/roliki-place-m.jpg", caption: "Место занятий, расписание и тренеры" },
+            { src: "assets/roliki-media.jpg", mobile: "assets/roliki-media-m.jpg", caption: "Фото с выездов и соревнований" },
+            { src: "assets/roliki-contact.jpg", mobile: "assets/roliki-contact-m.jpg", caption: "Страница записи: форма и телефоны тренеров" }
         ],
         description: [
             "Сайт секции роллерспорта Федерации роллер спорта Нижегородской области: о секции, место и расписание занятий, тренеры, цены, фото и видео.",

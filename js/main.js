@@ -254,6 +254,19 @@
             img.alt = p.title;
             img.loading = "lazy";
             media.appendChild(img);
+
+            // Мини-телефон поверх обложки — мобильная версия того же экрана
+            var coverShot = (p.gallery || []).find(function (s) { return s.src === p.cover; });
+            if (coverShot && coverShot.mobile) {
+                var phone = el("div", "card-phone");
+                var phoneImg = el("img");
+                phoneImg.src = coverShot.mobile;
+                phoneImg.alt = "";
+                phoneImg.loading = "lazy";
+                phone.appendChild(phoneImg);
+                media.appendChild(phone);
+            }
+
             var badge = statusBadge(p.status);
             if (badge) media.appendChild(badge);
             card.appendChild(media);
@@ -331,13 +344,26 @@
         view.appendChild(layout);
 
         var gallery = el("div", "gallery");
+        function screen(src, className, alt) {
+            var wrap = el("div", className);
+            var img = el("img");
+            img.src = src;
+            img.alt = alt;
+            img.loading = "lazy";
+            wrap.appendChild(img);
+            return wrap;
+        }
+
         (p.gallery || []).forEach(function (shot) {
             var fig = el("figure", "shot");
-            var img = el("img");
-            img.src = shot.src;
-            img.alt = shot.caption || p.title;
-            img.loading = "lazy";
-            fig.appendChild(img);
+            var alt = shot.caption || p.title;
+            var screens = el("div", "shot-screens");
+            screens.appendChild(screen(shot.src, "screen-desktop", alt + " — версия для компьютера"));
+            if (shot.mobile) {
+                fig.classList.add("has-mobile");
+                screens.appendChild(screen(shot.mobile, "screen-mobile", alt + " — версия для телефона"));
+            }
+            fig.appendChild(screens);
             if (shot.caption) fig.appendChild(el("figcaption", null, shot.caption));
             gallery.appendChild(fig);
         });
