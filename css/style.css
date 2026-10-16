@@ -126,6 +126,8 @@ a {
 
 .section {
     padding: 0 0 96px;
+    /* Переходы по #якорям и прокрутка из JS не прячут заголовок под липкой шапкой */
+    scroll-margin-top: 80px;
 }
 
 .section-head {
@@ -181,6 +183,74 @@ a {
 
 .card:hover .card-media img {
     transform: scale(1.03);
+}
+
+/* Скрытые проекты и кнопка «Ещё» */
+/* .card задаёт display: flex и перебивает атрибут hidden — возвращаем скрытие явно */
+.card[hidden] {
+    display: none;
+}
+
+.card-extra:not([hidden]) {
+    animation: card-in 0.35s ease;
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+.more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.more-btn::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.more-btn[aria-expanded="true"]::after {
+    transform: translateY(2px) rotate(-135deg);
+}
+
+.more-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.more-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-extra:not([hidden]) {
+        animation: none;
+    }
 }
 
 /* Мини-телефон на обложке карточки */

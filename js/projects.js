@@ -71,7 +71,7 @@ window.PROJECTS = [
         title: "Dimzerz",
         subtitle: "Сайт скейт-оператора и филмера",
         year: "2026",
-        status: "wip",
+        status: "done",
         cover: "assets/dimzerz-index.jpg",
         gallery: [
             { src: "assets/dimzerz-index.jpg", mobile: "assets/dimzerz-index-m.jpg", caption: "Обложка с фоновым видео и рассказом об авторе" },
@@ -83,8 +83,32 @@ window.PROJECTS = [
             "Сайт-портфолио скейт-оператора Dimzerz (Дмитрий Забозлаев), перенесённый с Tilda на чистый код: обложка с фоновым видео, главные видеопроекты, плейлист, фото и блок поддержки автора.",
             "Ролики с YouTube показываются превью с кнопкой Play, а плеер загружается только по клику — страница открывается быстрее. Плейлист и кнопки доната собираются из данных в скрипте: чтобы добавить видео или способ оплаты, не нужно трогать вёрстку."
         ],
-        role: "Перенос с Tilda, вёрстка, адаптив, плейлист и слайдер",
+        role: "Дизайн и адаптив, мобильное меню",
         stack: ["HTML", "CSS", "JavaScript", "YouTube"],
+        links: {
+            demo: "",
+            code: ""
+        }
+    },
+    {
+        slug: "roliki",
+        title: "Секция роллерспорта",
+        subtitle: "Сайт спортивной секции в Нижнем Новгороде",
+        year: "2026",
+        status: "wip",
+        cover: "assets/roliki-index.jpg",
+        gallery: [
+            { src: "assets/roliki-index.jpg", mobile: "assets/roliki-index-m.jpg", caption: "Главная: первый экран с видео тренировки" },
+            { src: "assets/roliki-place.jpg", mobile: "assets/roliki-place-m.jpg", caption: "Место занятий, расписание и тренеры" },
+            { src: "assets/roliki-media.jpg", mobile: "assets/roliki-media-m.jpg", caption: "Фото с выездов и соревнований" },
+            { src: "assets/roliki-contact.jpg", mobile: "assets/roliki-contact-m.jpg", caption: "Страница записи: форма и телефоны тренеров" }
+        ],
+        description: [
+            "Сайт секции роллерспорта Федерации роллер спорта Нижегородской области: о секции, место и расписание занятий, тренеры, цены, фото и видео.",
+            "На странице записи — форма, которая проверяет имя, телефон и группу и открывает почтовый клиент с готовым письмом, контакты тренеров и Яндекс Карта с адресом площадки."
+        ],
+        role: "Дизайн и вёрстка, форма записи, адаптив",
+        stack: ["HTML", "CSS", "JavaScript"],
         links: {
             demo: "",
             code: ""

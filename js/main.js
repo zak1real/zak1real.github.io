@@ -240,13 +240,21 @@
     }
 
     // Главная: сетка карточек
+    // Сколько проектов видно сразу; остальные открываются кнопкой «Ещё»
+    var VISIBLE_PROJECTS = 3;
+
     var grid = document.querySelector("[data-project-grid]");
     if (grid) {
         document.title = (owner.name || "Портфолио") + " — проекты";
+        grid.id = grid.id || "project-grid";
 
-        projects.forEach(function (p) {
+        projects.forEach(function (p, i) {
             var card = el("a", "card");
             card.href = "project.html?id=" + encodeURIComponent(p.slug);
+            if (i >= VISIBLE_PROJECTS) {
+                card.classList.add("card-extra");
+                card.hidden = true;
+            }
 
             var media = el("div", "card-media");
             var img = el("img");
@@ -282,6 +290,30 @@
 
             grid.appendChild(card);
         });
+
+        var extra = grid.querySelectorAll(".card-extra");
+        if (extra.length) {
+            var moreText = "Ещё";
+            var more = el("button", "more-btn", moreText);
+            more.type = "button";
+            more.setAttribute("aria-expanded", "false");
+            more.setAttribute("aria-controls", grid.id);
+
+            more.addEventListener("click", function () {
+                var open = more.getAttribute("aria-expanded") !== "true";
+                extra.forEach(function (card) { card.hidden = !open; });
+                more.setAttribute("aria-expanded", String(open));
+                more.textContent = open ? "Свернуть" : moreText;
+                // Свернули, а заголовок «Проекты» ушёл за экран — возвращаем к нему,
+                // чтобы не остаться внизу страницы. Отступ сверху (scroll-margin-top) — под липкую шапку.
+                var section = grid.closest("section") || grid;
+                if (!open && section.getBoundingClientRect().top < 0) section.scrollIntoView({ block: "start" });
+            });
+
+            var moreWrap = el("div", "more-wrap");
+            moreWrap.appendChild(more);
+            grid.after(moreWrap);
+        }
     }
 
     // Страница проекта: project.html?id=<slug>
