@@ -239,16 +239,30 @@
         return el("span", "status status-" + status, STATUSES[status]);
     }
 
+    // Кадры галереи только с телефоном (Telegram-приложения и т. п.)
+    function mobileOnlyShots(p) {
+        return (p.gallery || []).filter(function (s) { return !s.src && s.mobile; });
+    }
+
     // Главная: сетка карточек
     // Сколько проектов видно сразу; остальные открываются кнопкой «Ещё»
     var VISIBLE_PROJECTS = 3;
 
-    var grid = document.querySelector("[data-project-grid]");
-    if (grid) {
-        document.title = (owner.name || "Портфолио") + " — проекты";
-        grid.id = grid.id || "project-grid";
+    var grids = document.querySelectorAll("[data-project-grid]");
+    if (grids.length) document.title = (owner.name || "Портфолио") + " — проекты";
 
-        projects.forEach(function (p, i) {
+    // Каждая сетка показывает проекты своего раздела: data-project-grid="site" | "telegram"
+    grids.forEach(function (grid) {
+        var type = grid.getAttribute("data-project-grid") || "site";
+        var list = projects.filter(function (p) { return (p.type || "site") === type; });
+        var section = grid.closest("section") || grid;
+        if (!list.length) {
+            section.hidden = true;
+            return;
+        }
+        grid.id = grid.id || "project-grid-" + type;
+
+        list.forEach(function (p, i) {
             var card = el("a", "card");
             card.href = "project.html?id=" + encodeURIComponent(p.slug);
             if (i >= VISIBLE_PROJECTS) {
@@ -257,14 +271,28 @@
             }
 
             var media = el("div", "card-media");
-            var img = el("img");
-            img.src = p.cover;
-            img.alt = p.title;
-            img.loading = "lazy";
-            media.appendChild(img);
+            if (p.cover) {
+                var img = el("img");
+                img.src = p.cover;
+                img.alt = p.title;
+                img.loading = "lazy";
+                media.appendChild(img);
+            } else {
+                // Нет десктопной обложки — показываем ряд телефонов
+                media.classList.add("card-media-phones");
+                mobileOnlyShots(p).slice(0, 3).forEach(function (s) {
+                    var phone = el("div", "card-phone-row");
+                    var phoneImg = el("img");
+                    phoneImg.src = s.mobile;
+                    phoneImg.alt = "";
+                    phoneImg.loading = "lazy";
+                    phone.appendChild(phoneImg);
+                    media.appendChild(phone);
+                });
+            }
 
             // Мини-телефон поверх обложки — мобильная версия того же экрана
-            var coverShot = (p.gallery || []).find(function (s) { return s.src === p.cover; });
+            var coverShot = p.cover && (p.gallery || []).find(function (s) { return s.src === p.cover; });
             if (coverShot && coverShot.mobile) {
                 var phone = el("div", "card-phone");
                 var phoneImg = el("img");
@@ -304,9 +332,8 @@
                 extra.forEach(function (card) { card.hidden = !open; });
                 more.setAttribute("aria-expanded", String(open));
                 more.textContent = open ? "Свернуть" : moreText;
-                // Свернули, а заголовок «Проекты» ушёл за экран — возвращаем к нему,
+                // Свернули, а заголовок раздела ушёл за экран — возвращаем к нему,
                 // чтобы не остаться внизу страницы. Отступ сверху (scroll-margin-top) — под липкую шапку.
-                var section = grid.closest("section") || grid;
                 if (!open && section.getBoundingClientRect().top < 0) section.scrollIntoView({ block: "start" });
             });
 
@@ -314,7 +341,7 @@
             moreWrap.appendChild(more);
             grid.after(moreWrap);
         }
-    }
+    });
 
     // Страница проекта: project.html?id=<slug>
     var view = document.querySelector("[data-project-view]");
@@ -326,6 +353,10 @@
         if (!p) return;
 
         document.title = p.title + " — " + (owner.name || "Портфолио");
+
+        // «← Все проекты» ведёт к разделу этого проекта на главной
+        var back = document.querySelector(".back");
+        if (back && p.type === "telegram") back.href = "index.html#telegram";
 
         var header = el("header", "project-head");
         header.appendChild(el("p", "eyebrow", p.subtitle + " · " + p.year));
@@ -357,7 +388,7 @@
 
         var links = el("div", "project-links");
         if (p.links && p.links.demo) {
-            var demo = el("a", "btn", "Открыть сайт ↗");
+            var demo = el("a", "btn", p.type === "telegram" ? "Открыть в Telegram ↗" : "Открыть сайт ↗");
             demo.href = p.links.demo;
             demo.target = "_blank";
             demo.rel = "noopener";
@@ -386,7 +417,22 @@
             return wrap;
         }
 
+        // Кадры только с телефоном идут подряд в один ряд
+        var phones = null;
         (p.gallery || []).forEach(function (shot) {
+            if (!shot.src) {
+                if (!phones) {
+                    phones = el("div", "gallery-phones");
+                    gallery.appendChild(phones);
+                }
+                var phoneFig = el("figure", "shot");
+                phoneFig.appendChild(screen(shot.mobile, "screen-mobile", (shot.caption || p.title) + " — экран телефона"));
+                if (shot.caption) phoneFig.appendChild(el("figcaption", null, shot.caption));
+                phones.appendChild(phoneFig);
+                return;
+            }
+            phones = null;
+
             var fig = el("figure", "shot");
             var alt = shot.caption || p.title;
             var screens = el("div", "shot-screens");

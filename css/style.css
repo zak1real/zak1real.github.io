@@ -277,6 +277,44 @@ a {
     transform: translateY(-4px);
 }
 
+/* Обложка из ряда телефонов (проекты без десктопной версии) */
+.card-media-phones {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5%;
+    padding-top: 6%;
+    background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--accent) 22%, var(--surface)), var(--bg));
+}
+
+.card-phone-row {
+    flex: none;
+    width: 26%;
+    padding: 3px;
+    border-radius: 14px;
+    background: #0b0b0b;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.card-phone-row:nth-child(2) {
+    margin-top: -3%;
+}
+
+.card .card-media .card-phone-row img {
+    height: auto;
+    border-radius: 11px;
+    transform: none;
+}
+
+.card:hover .card-phone-row {
+    transform: translateY(-6px);
+}
+
+.card:hover .card-phone-row:nth-child(2) {
+    transform: translateY(-10px);
+}
+
 .card-body {
     padding: 20px 22px 24px;
     display: grid;
@@ -506,6 +544,17 @@ a {
 
 .screen-mobile img {
     border-radius: 24px;
+}
+
+/* Ряд экранов телефона */
+.gallery-phones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 32px;
+}
+
+.gallery-phones .shot figcaption {
+    text-align: center;
 }
 
 .shot figcaption {
@@ -766,6 +815,15 @@ a {
     .screen-mobile {
         width: min(240px, 66%);
         justify-self: center;
+    }
+
+    .gallery-phones {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .gallery-phones .screen-mobile {
+        width: auto;
     }
 
     .nav {
