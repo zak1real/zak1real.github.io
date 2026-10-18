@@ -184,7 +184,7 @@ window.PROJECTS = [
         role: "Дизайн и разработка мини-приложения, сервер напоминаний на Node.js, Bot API",
         stack: ["HTML", "CSS", "JavaScript", "Telegram Mini Apps", "Node.js", "Bot API"],
         links: {
-            demo: "",
+            demo: "https://t.me/Habits_realbot",
             code: ""
         }
     }
