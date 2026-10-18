@@ -160,7 +160,7 @@ window.PROJECTS = [
         role: "Дизайн и разработка, диаграмма на SVG, хранение в Telegram CloudStorage",
         stack: ["HTML", "CSS", "JavaScript", "Telegram Mini Apps", "CloudStorage"],
         links: {
-            demo: "",
+            demo: "https://t.me/Expenses_realbot",
             code: ""
         }
     },
