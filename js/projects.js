@@ -140,5 +140,52 @@ window.PROJECTS = [
             demo: "https://t.me/bot_coffe_coffe_bbboobot",
             code: ""
         }
+    },
+    {
+        slug: "tg-expenses",
+        type: "telegram",
+        title: "Монетка",
+        subtitle: "Учёт расходов — Telegram Mini App",
+        year: "2026",
+        status: "done",
+        gallery: [
+            { mobile: "assets/tgexpenses-home-m.jpg", caption: "Итоги месяца, бюджет и траты по категориям" },
+            { mobile: "assets/tgexpenses-list-m.jpg", caption: "История операций по дням" },
+            { mobile: "assets/tgexpenses-add-m.jpg", caption: "Добавление расхода" }
+        ],
+        description: [
+            "Мини-приложение для учёта личных финансов прямо в Telegram: расходы и доходы по месяцам, лимит бюджета с подсказкой, сколько можно тратить в день, круговая диаграмма по категориям и история операций с фильтрами.",
+            "Данные хранятся в облаке Telegram — у каждого пользователя свои и доступны с любого его устройства, без отдельного сервера и базы. Категории, валюта, бюджет и фирменный цвет задаются в одном файле настроек."
+        ],
+        role: "Дизайн и разработка, диаграмма на SVG, хранение в Telegram CloudStorage",
+        stack: ["HTML", "CSS", "JavaScript", "Telegram Mini Apps", "CloudStorage"],
+        links: {
+            demo: "",
+            code: ""
+        }
+    },
+    {
+        slug: "tg-habits",
+        type: "telegram",
+        title: "Ритм",
+        subtitle: "Привычки и задачи с напоминаниями — Telegram Mini App + бот",
+        year: "2026",
+        status: "done",
+        gallery: [
+            { mobile: "assets/tghabits-habits-m.jpg", caption: "Привычки: прогресс дня и серии" },
+            { mobile: "assets/tghabits-tasks-m.jpg", caption: "Задачи по срокам" },
+            { mobile: "assets/tghabits-habit-m.jpg", caption: "Настройка привычки: дни и напоминание" },
+            { mobile: "assets/tghabits-task-m.jpg", caption: "Новая задача с напоминанием" }
+        ],
+        description: [
+            "Трекер привычек и задач в Telegram: привычки по дням недели с сериями «дней подряд» и историей за неделю, задачи с датой и временем, сгруппированные по срокам, быстрое добавление в одну строку.",
+            "Напоминания присылает сам бот: мини-приложение передаёт расписание на сервер на Node.js, сервер проверяет подпись Telegram и в нужное время пишет пользователю в чат — с учётом его часового пояса и без напоминаний о том, что уже сделано."
+        ],
+        role: "Дизайн и разработка мини-приложения, сервер напоминаний на Node.js, Bot API",
+        stack: ["HTML", "CSS", "JavaScript", "Telegram Mini Apps", "Node.js", "Bot API"],
+        links: {
+            demo: "",
+            code: ""
+        }
     }
 ];
