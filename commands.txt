@@ -1,0 +1,55 @@
+КОМАНДЫ ДЛЯ ПОРТФОЛИО
+=====================
+
+Все команды запускаются в терминале (PowerShell) из папки portfolio.
+Перейти в неё:
+
+    cd C:\Users\Admin\.cursor\projects\portfolio
+
+
+СКРИНШОТЫ ПРОЕКТОВ
+------------------
+
+Снять все скриншоты (десктоп + телефон) в папку assets:
+
+    node tools/screenshots.mjs
+
+Снять только скриншоты одного проекта (по части имени):
+
+    node tools/screenshots.mjs dimzerz
+    node tools/screenshots.mjs skateshop
+    node tools/screenshots.mjs 5treet
+
+Новая страница для съёмки добавляется в массив SHOTS в начале файла tools/screenshots.mjs.
+Результат: assets/<имя>.jpg — десктоп, assets/<имя>-m.jpg — телефон.
+
+
+ПОСМОТРЕТЬ САЙТ ЛОКАЛЬНО
+------------------------
+
+Просто открыть index.html в браузере:
+
+    start index.html
+
+Или через локальный сервер (адрес появится в терминале, обычно http://localhost:3000):
+
+    npx serve .
+
+Остановить сервер: Ctrl+C.
+
+
+ПРОВЕРИТЬ JS НА ОШИБКИ
+----------------------
+
+Проверка синтаксиса после правок в коде (если ничего не вывело — всё в порядке):
+
+    node --check js/main.js
+    node --check js/projects.js
+
+
+ОПУБЛИКОВАТЬ НА GITHUB
+----------------------
+
+Через сайт github.com, репозиторий zak1real.github.io:
+Add file → Upload files → перетащить изменённые ПАПКИ (js, css, assets) → Commit changes.
+Через 1–2 минуты открыть https://zak1real.github.io и нажать Ctrl+F5.
