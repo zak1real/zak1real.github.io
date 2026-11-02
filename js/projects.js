@@ -54,12 +54,12 @@ window.PROJECTS = [
         status: "done",
         cover: "assets/skateshop-index.jpg",
         gallery: [
-            { src: "assets/skateshop-index.jpg", mobile: "assets/skateshop-index-m.jpg", caption: "Главная: баннеры и лента новинок" },
+            { src: "assets/skateshop-index.jpg", mobile: "assets/skateshop-index-m.jpg", caption: "Главная: слайдер подборок с макро-кадрами брендов" },
             { src: "assets/skateshop-catalog.jpg", mobile: "assets/skateshop-catalog-m.jpg", caption: "Каталог с фильтрами по брендам, размерам и цене" },
             { src: "assets/skateshop-product.jpg", mobile: "assets/skateshop-product-m.jpg", caption: "Карточка товара с выбором размера" }
         ],
         description: [
-            "Учебный интернет-магазин скейтшопа: главная с баннерами и подборками, каталог, карточки товаров, корзина и страница о магазине.",
+            "Учебный интернет-магазин скейтшопа: главная с баннерами и подборками, каталог, карточки товаров, корзина и страница о магазине. В каталоге реальные вещи Thrasher, Polar, HUF, Baker, Independent, Santa Cruz и других брендов с официальными фото.",
             "Каталог целиком задаётся параметрами в адресе — фильтры, поиск и сортировку можно сохранить или отправить ссылкой. Корзина хранится в localStorage, товары, бренды и категории — в одном файле с данными, меню и фильтры собираются из него автоматически."
         ],
         role: "Дизайн и вёрстка, каталог с фильтрами, корзина",
